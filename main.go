@@ -4,13 +4,12 @@ import (
 	"GoVelha/game"
 	"fmt"
 	"math/rand"
-	"os"
-	"os/exec"
-	"runtime"
 	"time"
 )
 
 func main() {
+
+	game.ClearScreen()
 
 	player1 := game.NewPlayer("", "X") // jogador 1
 	fmt.Print("Player 1 (X), entre com o seu nome: ")
@@ -32,21 +31,7 @@ func main() {
 		}
 
 		player := gameBoard.Players[playerIndex]
-
-		gameBoard.PrintBoard()
-		fmt.Printf("Escolha sua jogada, %s (%s): ", player.Name, player.Symbol)
-		choice := 0
-		fmt.Scanf("%d", &choice)
-		gameBoard.UpdateBoard(player, choice)
-
-		cmd := exec.Command("")
-		if runtime.GOOS == "linux" {
-			cmd = exec.Command("clear")
-		} else {
-			cmd = exec.Command("cmd", "/c", "cls")
-		}
-		cmd.Stdout = os.Stdout
-		cmd.Run()
+		game.GetChoice(gameBoard, player)
 	}
 
 	gameBoard.PrintBoard()

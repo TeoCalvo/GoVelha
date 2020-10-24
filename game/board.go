@@ -41,6 +41,8 @@ func (b *Board) PrintBoard() {
 			count++
 		}
 	}
+
+	ClearScreen()
 	fmt.Printf(b.BoardString,
 		data[0],
 		data[1],
@@ -54,17 +56,26 @@ func (b *Board) PrintBoard() {
 }
 
 // UpdateBoard atualiza os dados do tabuleiro
-func (b *Board) UpdateBoard(p Player, pos int) {
+func (b *Board) UpdateBoard(p Player, pos int) bool {
+	if pos < 1 || pos > 9 {
+		return false
+	}
+
 	count := 1
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
 			if pos == count {
-				b.BoardDigital[i][j] = p.Number
-				i, j = 3, 3
+				if b.BoardDigital[i][j] == 0 {
+					b.BoardDigital[i][j] = p.Number
+					return true
+				} else {
+					return false
+				}
 			}
 			count++
 		}
 	}
+	return false
 }
 
 func (b *Board) FindWinner() bool {

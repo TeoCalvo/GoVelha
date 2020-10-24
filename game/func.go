@@ -1,5 +1,12 @@
 package game
 
+import (
+	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
+)
+
 // SumInt realiza a soma de uma fatia (slice) do tipo Int
 func SumInt(x []int) int {
 	total := 0
@@ -68,4 +75,28 @@ func CheckDiagSec(data [][]int) int {
 		return 30
 	}
 	return 0
+}
+
+// ClearScreen limpa tela
+func ClearScreen() {
+	cmd := exec.Command("")
+	if runtime.GOOS == "linux" {
+		cmd = exec.Command("clear")
+	} else {
+		cmd = exec.Command("cmd", "/c", "cls")
+	}
+	cmd.Stdout = os.Stdout
+	cmd.Run()
+}
+
+// GetChoice realiza a escolha do usuário com validação
+func GetChoice(board Board, player Player) {
+	for result := false; result != true; {
+		board.PrintBoard()
+		fmt.Printf("Escolha sua jogada, %s (%s): ", player.Name, player.Symbol)
+		choice := 0
+		fmt.Scanf("%d", &choice)
+		result = board.UpdateBoard(player, choice)
+	}
+
 }
