@@ -15,7 +15,7 @@ func main() {
 	fmt.Print("Player 1 (X), entre com o seu nome: ")
 	fmt.Scanf("%s", &player1.Name)
 
-	player2 := game.NewPlayer("", "O") // jogador 1
+	player2 := game.NewPlayer("", "O") // jogador 2
 	fmt.Print("Player 2 (O), entre com o seu nome: ")
 	fmt.Scanf("%s", &player2.Name)
 
