@@ -40,5 +40,4 @@ func main() {
 			fmt.Printf("Parabéns, %s!! Você ganhou!\n", p.Name)
 		}
 	}
-
 }

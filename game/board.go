@@ -15,7 +15,7 @@ type Board struct {
 
 // LoadBoard carrega os dados em string do tabuleiro
 func (b *Board) LoadBoard() {
-	data, _ := ioutil.ReadFile("board.txt")
+	data, _ := ioutil.ReadFile("game/board.txt")
 	b.BoardString = string(data)
 
 	b.BoardDigital = [][]int{
@@ -78,6 +78,8 @@ func (b *Board) UpdateBoard(p Player, pos int) bool {
 	return false
 }
 
+// FindWinner tenta encontrar o vencedor
+// Caso encontre, retorna true e altera o atributo do jogador Winner
 func (b *Board) FindWinner() bool {
 
 	checks := []int{

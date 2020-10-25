@@ -82,7 +82,7 @@ func ClearScreen() {
 	cmd := exec.Command("")
 	if runtime.GOOS == "linux" {
 		cmd = exec.Command("clear")
-	} else {
+	} else if runtime.GOOS == "windows" {
 		cmd = exec.Command("cmd", "/c", "cls")
 	}
 	cmd.Stdout = os.Stdout
